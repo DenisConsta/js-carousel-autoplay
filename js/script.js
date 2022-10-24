@@ -54,19 +54,27 @@ slider.addEventListener('mouseover', () => {
 slider.addEventListener("mouseout", initClock);
 
 function nextSlide() {
-  items[cont].classList.remove('d-block');
-  thumbs[cont].classList.remove('active');
+  removesClasses();
   if (cont === (images.length - 1)) cont = -1;
-  items[++cont].classList.add('d-block');
-  thumbs[cont].classList.add('active');
+  cont++;
+  addClasses();
 }
 
 function prevSlide() {
+  removesClasses();
+  if (cont === 0) cont = images.length;
+  cont--;
+  addClasses();
+}
+
+function addClasses() {
+  items[cont].classList.add('d-block');
+  thumbs[cont].classList.add('active');
+}
+
+function removesClasses() {
   items[cont].classList.remove('d-block');
   thumbs[cont].classList.remove('active');
-  if (cont === 0) cont = images.length;
-  items[--cont].classList.add('d-block');
-  thumbs[cont].classList.add('active');
 }
 
 function initClock() {
@@ -74,7 +82,3 @@ function initClock() {
     nextSlide();
   }, 1000);
 }
-
-
-
-
