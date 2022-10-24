@@ -1,0 +1,66 @@
+.debug{
+  border: 1px solid firebrick;
+  background-color: bisque;
+}
+
+.main-wrapper{
+  height: 100vh;
+}
+
+.my-c{
+  width: 60%;
+  height: 50%;
+}
+
+.img-container{
+  position: relative;
+}
+
+.gallery{
+  position: relative;
+  height: 100%;
+  width: 20%;
+}
+
+.arrow{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: .3rem;
+  background-color: white;
+  color: black;
+  font-size: 1.5rem;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.arrow.fa-chevron-up{
+  top: 10px;
+}
+
+.arrow.fa-chevron-down{
+  bottom: 10px;
+}
+
+.item{
+  display: none;
+}
+
+.thumbnail{
+  height: 20%;
+  width: 100%;
+  opacity: .5;
+}
+
+.thumbnail.active{
+  border: 3px solid white;
+  opacity: 1;
+}
+
