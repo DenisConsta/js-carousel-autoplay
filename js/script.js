@@ -13,6 +13,7 @@ const slider = doc('.img-container');
 const gallery = doc('.gallery');
 let imgTags = '', thumbTags = '';
 let cont = 0, clock;
+let isOver = false;
 
 for (let i = 0; i < images.length; i++) {
   imgTags += `
@@ -37,35 +38,21 @@ initClock();
 
 //? Listener btnUp
 btnUp.addEventListener("click", function () {
-  prevSlide();
+  moveSlider(false);
 });
 
 //? Listener btnDown
 btnDown.addEventListener("click", function () {
-  nextSlide();
+  moveSlider(true);
 });
 
-//? Listener slider (mouseover)
-slider.addEventListener('mouseover', () => {
-  clearInterval(clock);
+slider.addEventListener('mouseenter', function () {
+  isOver = true;
 });
 
-//? Listener slider (mouseout)
-slider.addEventListener("mouseout", initClock);
-
-function nextSlide() {
-  removesClasses();
-  if (cont === (images.length - 1)) cont = -1;
-  cont++;
-  addClasses();
-}
-
-function prevSlide() {
-  removesClasses();
-  if (cont === 0) cont = images.length;
-  cont--;
-  addClasses();
-}
+slider.addEventListener("mouseleave", function () {
+  isOver = false;
+});
 
 function addClasses() {
   items[cont].classList.add('d-block');
@@ -79,6 +66,21 @@ function removesClasses() {
 
 function initClock() {
   clock = setInterval(function () {
-    nextSlide();
+    if (!isOver) moveSlider(true);
   }, 1000);
 }
+
+function moveSlider(value) {
+  removesClasses();
+  if (value){
+    if (cont === (images.length - 1)) cont = -1;
+    cont++;
+  }
+  
+  else{
+    if (cont === 0) cont = images.length;
+    cont--;
+  } 
+  addClasses();
+}
+
